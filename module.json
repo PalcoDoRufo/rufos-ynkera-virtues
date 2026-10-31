@@ -1,0 +1,38 @@
+{
+  "id": "rufos-ynkera-virtues",
+  "title": "Rufo's Ynkera Virtues",
+  "description": "Um módulo simples para guardar os Pontos de Virtude dos jogadores das Crônicas de Ynkera. Abraço Prolix!",
+  "version": "0.0.0",
+  "authors": [
+    {
+      "name": "Rufo da Areia Sombria"
+    }
+  ],
+  "compatibility": {
+    "minimum": 14,
+    "verified": 14
+  },
+  "manifest": "https://raw.githubusercontent.com/PalcoDoRufo/rufos-ynkera-virtues/main/module.json",
+  "download": "",
+  "url": "https://github.com/PalcoDoRufo/rufos-ynkera-virtues",
+  "esmodules": [
+    "scripts/module.js"
+  ],
+  "styles": [
+    "styles/style.css"
+  ],
+  "socket": true,
+  "relationships": {
+    "systems": [
+      {
+        "id": "pf2e",
+        "type": "system"
+      }
+    ],
+    "requires": [
+        {
+          
+        }
+    ]
+  }
+}
