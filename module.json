@@ -9,8 +9,8 @@
     }
   ],
   "compatibility": {
-    "minimum": 14,
-    "verified": 14
+    "minimum": "14",
+    "verified": "14"
   },
   "manifest": "https://raw.githubusercontent.com/PalcoDoRufo/rufos-ynkera-virtues/main/module.json",
   "download": "",
@@ -21,18 +21,12 @@
   "styles": [
     "styles/style.css"
   ],
-  "socket": true,
   "relationships": {
     "systems": [
       {
         "id": "pf2e",
         "type": "system"
       }
-    ],
-    "requires": [
-        {
-          
-        }
     ]
   }
 }

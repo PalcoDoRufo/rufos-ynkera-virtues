@@ -1,0 +1,16 @@
+.rufos-ynkera-virtues .window-content {
+  padding: 0;
+  background: #17151a;
+}
+
+.rufos-ynkera-virtues .ryv-artwork {
+  position: relative;
+  line-height: 0;
+}
+
+.rufos-ynkera-virtues .ryv-artwork img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1536 / 1024;
+}
