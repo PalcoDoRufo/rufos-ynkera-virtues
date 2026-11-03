@@ -14,3 +14,17 @@
   height: auto;
   aspect-ratio: 1536 / 1024;
 }
+
+.rufos-ynkera-virtues .ryv-artwork {
+  position: relative;
+  line-height: 0;
+  overflow: hidden;
+}
+
+.rufos-ynkera-virtues .ryv-overlay {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}

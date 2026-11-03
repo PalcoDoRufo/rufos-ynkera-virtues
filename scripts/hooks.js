@@ -1,9 +1,11 @@
 import { ascenderVirtudes } from "./scene-control.js";
+import { registrarSettings } from "./settings.js";
 
 export function hooksIntro() {
 
     Hooks.once("init", () => {
         console.log("Rufo's Ynkera Virtues | As virtudes foram criadas.")
+        registrarSettings();
     })
 
     Hooks.once("setup", () => {
