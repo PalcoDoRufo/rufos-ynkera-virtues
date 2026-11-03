@@ -28,3 +28,94 @@
   height: 100%;
   pointer-events: none;
 }
+
+/*Mais Simples*/
+
+/*.rufos-ynkera-virtues .ryv-controls {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+  padding: 12px 16px;
+}
+
+.rufos-ynkera-virtues .ryv-control {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 0;
+  border-bottom: 1px solid #554a40;
+}
+
+.rufos-ynkera-virtues .ryv-control input {
+  width: 54px;
+  text-align: center;
+}
+
+.rufos-ynkera-virtues .ryv-value {
+  grid-column: 1 / -1;
+  font-size: 12px;
+  opacity: .75;
+}
+
+.rufos-ynkera-virtues .ryv-coragem label   { color: #ffffff; }
+.rufos-ynkera-virtues .ryv-compaixao label { color: #1FD540; }
+.rufos-ynkera-virtues .ryv-verdade label   { color: #b784ff; }*/
+
+/*Mais Sofisticado*/
+
+.rufos-ynkera-virtues .ryv-controls {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+  padding: 14px 16px;
+}
+
+.rufos-ynkera-virtues .ryv-control {
+  --ryv-cor: #c5b69f;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  padding: 12px 10px;
+  background: linear-gradient(180deg, #2a2520, #1a1714);
+  border: 1px solid #4a4036;
+  border-top: 3px solid var(--ryv-cor);
+  border-radius: 8px;
+  box-shadow: 0 0 14px color-mix(in srgb, var(--ryv-cor) 25%, transparent);
+}
+
+.rufos-ynkera-virtues .ryv-coragem   { --ryv-cor: #ffffff; }
+.rufos-ynkera-virtues .ryv-compaixao { --ryv-cor: #1FD540; }
+.rufos-ynkera-virtues .ryv-verdade   { --ryv-cor: #b784ff; }
+
+.rufos-ynkera-virtues .ryv-control label {
+  order: 1;
+  color: var(--ryv-cor);
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: .12em;
+}
+
+.rufos-ynkera-virtues .ryv-value {
+  order: 2;
+  font-size: 12px;
+  opacity: .8;
+}
+
+.rufos-ynkera-virtues .ryv-value strong {
+  color: var(--ryv-cor);
+  font-family: serif;
+  font-size: 34px;
+  line-height: 1;
+}
+
+.rufos-ynkera-virtues .ryv-control input {
+  order: 3;
+  width: 64px;
+  text-align: center;
+  color: #eee5d8;
+  background: #14110f;
+  border: 1px solid var(--ryv-cor);
+  border-radius: 5px;
+}

@@ -1,6 +1,12 @@
 export const MODULE_ID = "rufos-ynkera-virtues";
 const SETTING_KEY = "pontos";
 
+export const VIRTUDES = [
+  { id: "coragem",   label: "Coragem" },
+  { id: "compaixao", label: "Compaixão" },
+  { id: "verdade",   label: "Verdade" }
+];
+
 export function registrarSettings() {
   const { NumberField, SchemaField } = foundry.data.fields;
 
@@ -28,4 +34,12 @@ export function registrarSettings() {
 
 export function lerPontos() {
   return game.settings.get(MODULE_ID, SETTING_KEY);
+}
+
+export async function salvarPonto(id, valor) {
+  if (!game.user.isGM) return lerPontos();
+
+  const novos = { ...lerPontos(), [id]: valor };
+  await game.settings.set(MODULE_ID, SETTING_KEY, novos);
+  return lerPontos();
 }

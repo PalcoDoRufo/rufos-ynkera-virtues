@@ -1,4 +1,25 @@
-<div class="ryv-artwork">
-  <img src="modules/rufos-ynkera-virtues/assets/Emblema.png" alt="Três anéis dourados entrelaçados">
-  <svg class="ryv-overlay" viewBox="0 0 1536 1024" preserveAspectRatio="none" aria-hidden="true"></svg>
+<div class="ryv-root">
+
+  <div class="ryv-artwork">
+    <img src="modules/rufos-ynkera-virtues/assets/Emblema.png" alt="Três anéis dourados entrelaçados">
+    <svg class="ryv-overlay" viewBox="0 0 1536 1024" preserveAspectRatio="none" aria-hidden="true"></svg>
+  </div>
+
+  <div class="ryv-controls">
+    {{#each virtudes}}
+      <div class="ryv-control ryv-{{id}}">
+        <label for="ryv-input-{{id}}">{{label}}</label>
+
+        {{#if ../isGM}}
+          <input id="ryv-input-{{id}}" type="number"
+                 min="0" max="{{../max}}" step="1"
+                 value="{{value}}" data-virtude="{{id}}">
+        {{/if}}
+
+        {{!-- <span class="ryv-value">{{value}} de {{../max}}</span> --}}
+        <span class="ryv-value"><strong>{{value}}</strong> / {{../max}}</span>
+      </div>
+    {{/each}}
+  </div>
+
 </div>
