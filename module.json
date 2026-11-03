@@ -3,6 +3,7 @@
   "title": "Rufo's Ynkera Virtues",
   "description": "Um módulo simples para guardar os Pontos de Virtude dos jogadores das Crônicas de Ynkera. Abraço Prolix!",
   "version": "0.0.0",
+  "socket": true,
   "authors": [
     {
       "name": "Rufo da Areia Sombria"

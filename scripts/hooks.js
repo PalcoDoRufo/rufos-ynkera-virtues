@@ -1,5 +1,6 @@
-import { ascenderVirtudes } from "./scene-control.js";
+import { ascenderVirtudes, abrirVirtudes } from "./scene-control.js";
 import { registrarSettings } from "./settings.js";
+import { registrarSocket } from "./socket.js";
 
 export function hooksIntro() {
 
@@ -15,6 +16,7 @@ export function hooksIntro() {
     Hooks.once("ready", () => {
         console.log("Rufo's Ynkera Virtues | As virtudes foram ascendidas.")
         ui.notifications.info("Virtudes ascendidas.")
+        registrarSocket(abrirVirtudes);
     })
 
 }

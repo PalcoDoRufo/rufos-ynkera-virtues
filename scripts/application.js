@@ -1,5 +1,6 @@
 import { pontosVirtudes, SEGMENT_COUNT } from "./rings.js";
 import { lerPontos, salvarPonto, adicionarPontos, VIRTUDES } from "./settings.js";
+import { avisarJogadores } from "./socket.js";
 
 const { ApplicationV2, HandlebarsApplicationMixin, DialogV2 } = foundry.applications.api;
 
@@ -90,8 +91,7 @@ export class VirtudesApplication extends HandlebarsApplicationMixin(ApplicationV
         if (soma <= 0) return;
 
         const { antes, depois } = await adicionarPontos(deltas);
-        console.log("Rufo's Ynkera Virtues | Pontos:", { antes, depois });
-
+        avisarJogadores(antes, depois);
         this.render();
     }
 }
