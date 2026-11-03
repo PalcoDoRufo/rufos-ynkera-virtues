@@ -43,3 +43,17 @@ export async function salvarPonto(id, valor) {
   await game.settings.set(MODULE_ID, SETTING_KEY, novos);
   return lerPontos();
 }
+
+export async function adicionarPontos(deltas) {
+  const antes = { ...lerPontos() };
+  if (!game.user.isGM) return { antes, depois: antes };
+
+  const depois = {};
+  for (const v of VIRTUDES) {
+    const soma = antes[v.id] + Math.round(deltas[v.id] || 0);
+    depois[v.id] = Math.max(0, Math.min(20, soma));
+  }
+
+  await game.settings.set(MODULE_ID, SETTING_KEY, depois);
+  return { antes, depois };
+}
