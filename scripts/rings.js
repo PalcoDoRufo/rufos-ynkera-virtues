@@ -60,3 +60,39 @@ export function pontosVirtudes(svg, values) {
     }
   }
 }
+
+const DURACAO_SEGMENTO = 900;  // quanto dura o brilho de cada segmento (ms)
+const INTERVALO = 220;         // espera entre um segmento e o seguinte (ms)
+
+export function animarSegmentos(svg, antes, depois) {
+  const terminos = [];
+
+  for (const ring of RINGS) {
+    let ordem = 0;
+
+    for (let i = antes[ring.id]; i < depois[ring.id]; i++) {
+      const path = svg.querySelector(`path[data-ring="${ring.id}"][data-index="${i}"]`);
+      if (!path) continue;
+
+      // Estado final (o que fica depois da animação)
+      path.setAttribute("fill", ring.color);
+      path.setAttribute("fill-opacity", "0.74");
+
+      const animacao = path.animate([
+        { fill: EMPTY_COLOR, fillOpacity: 0.76, filter: "brightness(1)" },
+        { fill: ring.color, fillOpacity: 1, filter: `brightness(2) drop-shadow(0 0 8px ${ring.color})`, offset: 0.35 },
+        { fill: ring.color, fillOpacity: 0.74, filter: "brightness(1)" }
+      ], {
+        duration: DURACAO_SEGMENTO,
+        delay: ordem * INTERVALO,
+        easing: "ease-out",
+        fill: "backwards"
+      });
+
+      terminos.push(animacao.finished.catch(() => {}));
+      ordem++;
+    }
+  }
+
+  return Promise.all(terminos);
+}

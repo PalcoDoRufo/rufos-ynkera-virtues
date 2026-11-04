@@ -1,8 +1,23 @@
-import { pontosVirtudes, SEGMENT_COUNT } from "./rings.js";
 import { lerPontos, salvarPonto, adicionarPontos, VIRTUDES } from "./settings.js";
 import { avisarJogadores } from "./socket.js";
+import { pontosVirtudes, animarSegmentos, SEGMENT_COUNT } from "./rings.js";
 
 const { ApplicationV2, HandlebarsApplicationMixin, DialogV2 } = foundry.applications.api;
+
+const SOM_REVELACAO = "modules/rufos-ynkera-virtues/assets/oohh.mp3";
+const DURACAO_FADE = 4000; // ms que a janela leva para aparecer
+
+const esperar = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+
+function tocarSom() {
+    foundry.audio.AudioHelper.play({
+        src: SOM_REVELACAO,
+        channel: "interface",
+        volume: 0.8,
+        autoplay: true,
+        loop: false
+    });
+}
 
 async function perguntarPontos() {
     const campos = VIRTUDES.map(v => `
@@ -34,6 +49,7 @@ async function perguntarPontos() {
 
 export class VirtudesApplication extends HandlebarsApplicationMixin(ApplicationV2) {
 
+    revelacao = null;
     static DEFAULT_OPTIONS = {
         id: "rufos-ynkera-virtues",
         classes: ["rufos-ynkera-virtues"],
@@ -54,7 +70,7 @@ export class VirtudesApplication extends HandlebarsApplicationMixin(ApplicationV
 
     async _prepareContext(options) {
         const context = await super._prepareContext(options);
-        const pontos = lerPontos();
+        const pontos = this.revelacao?.antes ?? lerPontos();
 
         context.isGM = game.user.isGM;
         context.max = SEGMENT_COUNT;
@@ -70,11 +86,30 @@ export class VirtudesApplication extends HandlebarsApplicationMixin(ApplicationV
         const svg = this.element.querySelector(".ryv-overlay");
         pontosVirtudes(svg, context.pontos);
 
+        if (this.revelacao) this._iniciarRevelacao(svg);
+
         if (!game.user.isGM) return;
 
         for (const input of this.element.querySelectorAll("input[data-virtude]")) {
             input.addEventListener("change", (event) => this._aoMudarPonto(event));
         }
+    }
+
+    async _iniciarRevelacao(svg) {
+        const revelacao = this.revelacao;
+        const aindaValida = () => this.revelacao === revelacao && this.rendered;
+
+        this.element.querySelector(".ryv-root").classList.add("ryv-revelando");
+
+        tocarSom();
+        if (revelacao.comFade) await esperar(DURACAO_FADE);
+        if (!aindaValida()) return;
+
+        await animarSegmentos(svg, revelacao.antes, revelacao.depois);
+        if (!aindaValida()) return;
+
+        this.revelacao = null;
+        this.render();
     }
 
     async _aoMudarPonto(event) {
@@ -92,6 +127,18 @@ export class VirtudesApplication extends HandlebarsApplicationMixin(ApplicationV
 
         const { antes, depois } = await adicionarPontos(deltas);
         avisarJogadores(antes, depois);
+
+        this.revelacao = { antes, depois, comFade: false };
         this.render();
     }
+
+    async _onFirstRender(context, options) {
+        await super._onFirstRender(context, options);
+
+        if (this.revelacao?.comFade) {
+            this.element.style.setProperty("--ryv-fade", `${DURACAO_FADE}ms`);
+            this.element.classList.add("ryv-fade-in");
+        }
+    }
 }
+

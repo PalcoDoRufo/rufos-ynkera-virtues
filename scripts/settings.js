@@ -57,3 +57,11 @@ export async function adicionarPontos(deltas) {
   await game.settings.set(MODULE_ID, SETTING_KEY, depois);
   return { antes, depois };
 }
+
+export function normalizarPontos(obj) {
+  const limpo = {};
+  for (const v of VIRTUDES) {
+    limpo[v.id] = Math.max(0, Math.min(20, Math.round(Number(obj?.[v.id]) || 0)));
+  }
+  return limpo;
+}
