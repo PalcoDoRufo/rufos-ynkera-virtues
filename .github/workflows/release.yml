@@ -1,0 +1,64 @@
+name: Release
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  validar:
+    uses: ./.github/workflows/ci.yml
+
+  publicar:
+    needs: validar
+    runs-on: ubuntu-latest
+    steps:
+      - name: Baixar o código
+        uses: actions/checkout@v6
+
+      - name: Ler a versão e o id do module.json
+        id: info
+        run: |
+          echo "tag=v$(jq -r '.version' module.json)" >> "$GITHUB_OUTPUT"
+          echo "zip=$(jq -r '.id' module.json).zip" >> "$GITHUB_OUTPUT"
+
+      - name: Ver se essa versão já foi publicada
+        id: existe
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          if gh release view "${{ steps.info.outputs.tag }}" > /dev/null 2>&1; then
+            echo "publicada=true" >> "$GITHUB_OUTPUT"
+            echo "A versão ${{ steps.info.outputs.tag }} já existe. Nada a fazer."
+          else
+            echo "publicada=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Ajustar o endereço de download no module.json
+        if: steps.existe.outputs.publicada == 'false'
+        run: |
+          jq --arg dl "https://github.com/${GITHUB_REPOSITORY}/releases/download/${{ steps.info.outputs.tag }}/${{ steps.info.outputs.zip }}" \
+             '.download = $dl' module.json > module.tmp
+          mv module.tmp module.json
+          cat module.json
+
+      - name: Montar o zip do módulo
+        if: steps.existe.outputs.publicada == 'false'
+        run: zip -r -q "${{ steps.info.outputs.zip }}" . -x ".git/*" ".github/*" "eslint.config.mjs" "*.zip"
+
+      - name: Testar o zip
+        if: steps.existe.outputs.publicada == 'false'
+        run: |
+          unzip -tq "${{ steps.info.outputs.zip }}"
+          unzip -l "${{ steps.info.outputs.zip }}" | grep -E ' module.json$'
+
+      - name: Criar a Release
+        if: steps.existe.outputs.publicada == 'false'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release create "${{ steps.info.outputs.tag }}" module.json "${{ steps.info.outputs.zip }}" \
+            --title "${{ steps.info.outputs.tag }}" --generate-notes --target "$GITHUB_SHA"
