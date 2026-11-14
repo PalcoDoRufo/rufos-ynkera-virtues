@@ -150,3 +150,233 @@
   opacity: 0;
   pointer-events: none;
 }
+
+/* =========================================================
+   RUFO'S YNKERA VIRTUES — painel inferior em estilo medieval
+   Substitui apenas a aparência dos contadores e do rodapé.
+   ========================================================= */
+
+.rufos-ynkera-virtues .ryv-controls {
+  --ryv-gold: #c6a45e;
+  --ryv-gold-light: #ead49a;
+  --ryv-ink: #211810;
+
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 13px;
+  padding: 20px 18px 17px;
+  background:
+    radial-gradient(ellipse at 50% 0%, rgba(174, 130, 58, .15), transparent 68%),
+    linear-gradient(180deg, #302319 0%, #1c1510 100%);
+  border-top: 2px solid #9b793e;
+  border-bottom: 1px solid #72552e;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 225, 160, .15),
+    inset 0 -10px 24px rgba(0, 0, 0, .35);
+}
+
+/* Filete ornamental superior e inferior */
+.rufos-ynkera-virtues .ryv-controls::before,
+.rufos-ynkera-virtues .ryv-controls::after {
+  content: "✦  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━  ✦";
+  position: absolute;
+  left: 0;
+  right: 0;
+  overflow: hidden;
+  color: #b18b4d;
+  text-align: center;
+  font-family: Georgia, serif;
+  font-size: 9px;
+  letter-spacing: 2px;
+  line-height: 1;
+  opacity: .75;
+  pointer-events: none;
+}
+
+.rufos-ynkera-virtues .ryv-controls::before { top: 5px; }
+.rufos-ynkera-virtues .ryv-controls::after  { bottom: 5px; }
+
+.rufos-ynkera-virtues .ryv-control {
+  --ryv-cor: #d8c49a;
+
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-width: 0;
+  padding: 15px 10px 13px;
+  overflow: hidden;
+  background:
+    linear-gradient(135deg, rgba(255, 235, 190, .055), transparent 42%),
+    linear-gradient(180deg, #3b2b1e 0%, #241a13 100%);
+  border: 1px solid #8b6c3d;
+  border-radius: 3px;
+  outline: 1px solid rgba(19, 12, 7, .9);
+  outline-offset: -5px;
+  box-shadow:
+    inset 0 0 0 1px rgba(231, 196, 126, .12),
+    inset 0 12px 18px rgba(255, 220, 150, .025),
+    0 5px 10px rgba(0, 0, 0, .35);
+}
+
+/* Cantoneiras de metal */
+.rufos-ynkera-virtues .ryv-control::before,
+.rufos-ynkera-virtues .ryv-control::after {
+  content: "◆";
+  position: absolute;
+  color: var(--ryv-cor);
+  font-size: 9px;
+  opacity: .8;
+  text-shadow: 0 0 5px var(--ryv-cor);
+  pointer-events: none;
+}
+.rufos-ynkera-virtues .ryv-control::before { top: 6px; left: 8px; }
+.rufos-ynkera-virtues .ryv-control::after  { top: 6px; right: 8px; }
+
+.rufos-ynkera-virtues .ryv-coragem   { --ryv-cor: #e1d8c7; }
+.rufos-ynkera-virtues .ryv-compaixao { --ryv-cor: #82bd78; }
+.rufos-ynkera-virtues .ryv-verdade   { --ryv-cor: #b99adf; }
+
+.rufos-ynkera-virtues .ryv-control label {
+  order: 1;
+  margin: 0;
+  color: var(--ryv-cor);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 13px;
+  font-weight: bold;
+  letter-spacing: .16em;
+  line-height: 1.25;
+  text-align: center;
+  text-transform: uppercase;
+  text-shadow: 0 1px 2px #000, 0 0 8px color-mix(in srgb, var(--ryv-cor) 25%, transparent);
+}
+
+/* Número em medalhão */
+.rufos-ynkera-virtues .ryv-value {
+  order: 2;
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  gap: 5px;
+  color: #cbb995;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 13px;
+  letter-spacing: .08em;
+  text-shadow: 0 1px 2px #000;
+}
+
+.rufos-ynkera-virtues .ryv-value strong {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 58px;
+  height: 58px;
+  color: var(--ryv-cor);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 31px;
+  font-weight: normal;
+  line-height: 1;
+  border: 1px solid var(--ryv-cor);
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at 35% 28%, rgba(255, 245, 215, .15), transparent 48%),
+    linear-gradient(145deg, #21170f, #382719 70%, #1b130d);
+  box-shadow:
+    inset 0 0 0 3px rgba(0, 0, 0, .35),
+    inset 0 0 12px rgba(0, 0, 0, .8),
+    0 0 0 2px rgba(181, 143, 76, .2),
+    0 0 12px color-mix(in srgb, var(--ryv-cor) 20%, transparent);
+}
+
+/* Campo numérico para o Mestre */
+.rufos-ynkera-virtues .ryv-control input {
+  order: 3;
+  width: 66px;
+  height: 27px;
+  padding: 2px 5px;
+  color: #eadbb9;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 14px;
+  text-align: center;
+  background: #17100b;
+  border: 1px solid #8b6c3d;
+  border-radius: 2px;
+  box-shadow: inset 0 2px 5px rgba(0, 0, 0, .7);
+}
+
+.rufos-ynkera-virtues .ryv-control input:focus {
+  border-color: var(--ryv-cor);
+  outline: 1px solid color-mix(in srgb, var(--ryv-cor) 45%, transparent);
+  box-shadow: 0 0 8px color-mix(in srgb, var(--ryv-cor) 25%, transparent),
+              inset 0 2px 5px rgba(0, 0, 0, .7);
+}
+
+/* Rodapé e botão de adicionar */
+.rufos-ynkera-virtues .ryv-footer {
+  display: flex;
+  justify-content: center;
+  padding: 13px 16px 17px;
+  background: linear-gradient(180deg, #1c1510, #120d09);
+  border-top: 1px solid rgba(184, 143, 75, .45);
+}
+
+.rufos-ynkera-virtues .ryv-footer button {
+  position: relative;
+  width: auto;
+  min-width: 175px;
+  padding: 8px 24px;
+  color: #ead7ad;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 13px;
+  font-weight: bold;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  background: linear-gradient(180deg, #654a29, #382516);
+  border: 1px solid #b08a4b;
+  border-radius: 2px;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 231, 178, .22),
+    0 3px 8px rgba(0, 0, 0, .45);
+  text-shadow: 0 1px 2px #000;
+}
+
+.rufos-ynkera-virtues .ryv-footer button:hover {
+  color: #fff0c9;
+  background: linear-gradient(180deg, #806035, #4a301a);
+  border-color: #e0bd78;
+  box-shadow: 0 0 12px rgba(198, 164, 94, .25),
+              inset 0 1px 0 rgba(255, 231, 178, .3);
+}
+
+.rufos-ynkera-virtues .ryv-footer button:active {
+  transform: translateY(1px);
+}
+
+@media (max-width: 560px) {
+  .rufos-ynkera-virtues .ryv-controls {
+    gap: 7px;
+    padding: 17px 9px 15px;
+  }
+
+  .rufos-ynkera-virtues .ryv-control {
+    padding: 13px 5px 10px;
+  }
+
+  .rufos-ynkera-virtues .ryv-control label {
+    font-size: 10px;
+    letter-spacing: .08em;
+  }
+
+  .rufos-ynkera-virtues .ryv-value strong {
+    width: 46px;
+    height: 46px;
+    font-size: 25px;
+  }
+
+  .rufos-ynkera-virtues .ryv-value {
+    font-size: 10px;
+  }
+}
