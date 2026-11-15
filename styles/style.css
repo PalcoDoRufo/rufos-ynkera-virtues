@@ -1,11 +1,22 @@
+/* =========================================================
+   RUFO'S YNKERA VIRTUES
+   A área da imagem NÃO é alterada: a janela continua com
+   900px de largura e a imagem com a mesma proporção.
+   Só a área dos pontos (cartões + botão) foi compactada,
+   para a janela inteira ocupar menos altura.
+   ========================================================= */
+
 .rufos-ynkera-virtues .window-content {
   padding: 0;
   background: #17151a;
 }
 
+/* ---------- Área da imagem (igual à original) ---------- */
+
 .rufos-ynkera-virtues .ryv-artwork {
   position: relative;
   line-height: 0;
+  overflow: hidden;
 }
 
 .rufos-ynkera-virtues .ryv-artwork img {
@@ -13,18 +24,6 @@
   width: 100%;
   height: auto;
   aspect-ratio: 1536 / 1024;
-}
-
-.rufos-ynkera-virtues .ryv-artwork {
-  position: relative;
-  line-height: 0;
-  overflow: hidden;
-  /* Em telas altas: ocupa 100% da largura (igual a antes).
-     Em telas baixas: encolhe para a janela caber na altura da tela.
-     340px = espaço reservado para barra de título, cartões e rodapé;
-     1.5 = proporção 1536/1024 da imagem. */
-  width: min(100%, max(320px, calc((100vh - 340px) * 1.5)));
-  margin: 0 auto;
 }
 
 .rufos-ynkera-virtues .ryv-overlay {
@@ -35,112 +34,8 @@
   pointer-events: none;
 }
 
-/*Mais Simples*/
+/* ---------- Fade-in da janela (só numa revelação) ---------- */
 
-/*.rufos-ynkera-virtues .ryv-controls {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 18px;
-  padding: 12px 16px;
-}
-
-.rufos-ynkera-virtues .ryv-control {
-  display: grid;
-  grid-template-columns: 1fr auto;
-  align-items: center;
-  gap: 8px;
-  padding: 6px 0;
-  border-bottom: 1px solid #554a40;
-}
-
-.rufos-ynkera-virtues .ryv-control input {
-  width: 54px;
-  text-align: center;
-}
-
-.rufos-ynkera-virtues .ryv-value {
-  grid-column: 1 / -1;
-  font-size: 12px;
-  opacity: .75;
-}
-
-.rufos-ynkera-virtues .ryv-coragem label   { color: #ffffff; }
-.rufos-ynkera-virtues .ryv-compaixao label { color: #1FD540; }
-.rufos-ynkera-virtues .ryv-verdade label   { color: #b784ff; }*/
-
-/*Mais Sofisticado*/
-
-.rufos-ynkera-virtues .ryv-controls {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 14px;
-  padding: 14px 16px;
-}
-
-.rufos-ynkera-virtues .ryv-control {
-  --ryv-cor: #c5b69f;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 6px;
-  padding: 12px 10px;
-  background: linear-gradient(180deg, #2a2520, #1a1714);
-  border: 1px solid #4a4036;
-  border-top: 3px solid var(--ryv-cor);
-  border-radius: 8px;
-  box-shadow: 0 0 14px color-mix(in srgb, var(--ryv-cor) 25%, transparent);
-}
-
-.rufos-ynkera-virtues .ryv-coragem   { --ryv-cor: #ffffff; }
-.rufos-ynkera-virtues .ryv-compaixao { --ryv-cor: #1FD540; }
-.rufos-ynkera-virtues .ryv-verdade   { --ryv-cor: #b784ff; }
-
-.rufos-ynkera-virtues .ryv-control label {
-  order: 1;
-  color: var(--ryv-cor);
-  font-size: 13px;
-  text-transform: uppercase;
-  letter-spacing: .12em;
-}
-
-.rufos-ynkera-virtues .ryv-value {
-  order: 2;
-  font-size: 12px;
-  opacity: .8;
-}
-
-.rufos-ynkera-virtues .ryv-value strong {
-  color: var(--ryv-cor);
-  font-family: serif;
-  font-size: 34px;
-  line-height: 1;
-}
-
-.rufos-ynkera-virtues .ryv-control input {
-  order: 3;
-  width: 64px;
-  text-align: center;
-  color: #eee5d8;
-  background: #14110f;
-  border: 1px solid var(--ryv-cor);
-  border-radius: 5px;
-}
-
-/*-----------------------------------------------------*/
-
-.rufos-ynkera-virtues .ryv-footer {
-  display: flex;
-  justify-content: center;
-  padding: 0 16px 16px;
-}
-
-.rufos-ynkera-virtues .ryv-footer button {
-  width: auto;
-  min-width: 160px;
-  padding: 6px 18px;
-}
-
-/* Fade-in da janela (só quando ela é criada por uma revelação) */
 .rufos-ynkera-virtues.ryv-fade-in {
   animation: ryv-fade-in var(--ryv-fade, 4s) ease-in both;
 }
@@ -157,21 +52,14 @@
   pointer-events: none;
 }
 
-/* =========================================================
-   RUFO'S YNKERA VIRTUES — painel inferior em estilo medieval
-   Substitui apenas a aparência dos contadores e do rodapé.
-   ========================================================= */
+/* ---------- Painel dos pontos (compacto, estilo medieval) ---------- */
 
 .rufos-ynkera-virtues .ryv-controls {
-  --ryv-gold: #c6a45e;
-  --ryv-gold-light: #ead49a;
-  --ryv-ink: #211810;
-
   position: relative;
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 13px;
-  padding: 20px 18px 17px;
+  gap: 10px;
+  padding: 12px 14px 10px;
   background:
     radial-gradient(ellipse at 50% 0%, rgba(174, 130, 58, .15), transparent 68%),
     linear-gradient(180deg, #302319 0%, #1c1510 100%);
@@ -182,38 +70,18 @@
     inset 0 -10px 24px rgba(0, 0, 0, .35);
 }
 
-/* Filete ornamental superior e inferior */
-.rufos-ynkera-virtues .ryv-controls::before,
-.rufos-ynkera-virtues .ryv-controls::after {
-  content: "✦  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━  ✦";
-  position: absolute;
-  left: 0;
-  right: 0;
-  overflow: hidden;
-  color: #b18b4d;
-  text-align: center;
-  font-family: Georgia, serif;
-  font-size: 9px;
-  letter-spacing: 2px;
-  line-height: 1;
-  opacity: .75;
-  pointer-events: none;
-}
-
-.rufos-ynkera-virtues .ryv-controls::before { top: 5px; }
-.rufos-ynkera-virtues .ryv-controls::after  { bottom: 5px; }
-
+/* Cada cartão agora é uma LINHA: nome | número | campo */
 .rufos-ynkera-virtues .ryv-control {
   --ryv-cor: #d8c49a;
 
   position: relative;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
-  justify-content: center;
-  gap: 8px;
+  justify-content: space-between;
+  gap: 6px;
   min-width: 0;
-  padding: 15px 10px 13px;
+  padding: 7px 18px;
   overflow: hidden;
   background:
     linear-gradient(135deg, rgba(255, 235, 190, .055), transparent 42%),
@@ -221,26 +89,27 @@
   border: 1px solid #8b6c3d;
   border-radius: 3px;
   outline: 1px solid rgba(19, 12, 7, .9);
-  outline-offset: -5px;
+  outline-offset: -4px;
   box-shadow:
     inset 0 0 0 1px rgba(231, 196, 126, .12),
-    inset 0 12px 18px rgba(255, 220, 150, .025),
-    0 5px 10px rgba(0, 0, 0, .35);
+    0 4px 8px rgba(0, 0, 0, .35);
 }
 
-/* Cantoneiras de metal */
+/* Cantoneiras: agora nas laterais, no meio do cartão */
 .rufos-ynkera-virtues .ryv-control::before,
 .rufos-ynkera-virtues .ryv-control::after {
   content: "◆";
   position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
   color: var(--ryv-cor);
-  font-size: 9px;
+  font-size: 8px;
   opacity: .8;
   text-shadow: 0 0 5px var(--ryv-cor);
   pointer-events: none;
 }
-.rufos-ynkera-virtues .ryv-control::before { top: 6px; left: 8px; }
-.rufos-ynkera-virtues .ryv-control::after  { top: 6px; right: 8px; }
+.rufos-ynkera-virtues .ryv-control::before { left: 6px; }
+.rufos-ynkera-virtues .ryv-control::after  { right: 6px; }
 
 .rufos-ynkera-virtues .ryv-coragem   { --ryv-cor: #e1d8c7; }
 .rufos-ynkera-virtues .ryv-compaixao { --ryv-cor: #82bd78; }
@@ -248,29 +117,31 @@
 
 .rufos-ynkera-virtues .ryv-control label {
   order: 1;
+  flex: 1 1 auto;
+  min-width: 0;
   margin: 0;
   color: var(--ryv-cor);
   font-family: Georgia, "Times New Roman", serif;
-  font-size: 13px;
+  font-size: 12px;
   font-weight: bold;
-  letter-spacing: .16em;
-  line-height: 1.25;
-  text-align: center;
+  letter-spacing: .1em;
+  line-height: 1.2;
+  text-align: left;
   text-transform: uppercase;
   text-shadow: 0 1px 2px #000, 0 0 8px color-mix(in srgb, var(--ryv-cor) 25%, transparent);
 }
 
-/* Número em medalhão */
+/* Número em medalhão (menor) */
 .rufos-ynkera-virtues .ryv-value {
   order: 2;
+  flex: 0 0 auto;
   display: flex;
-  align-items: baseline;
-  justify-content: center;
-  gap: 5px;
+  align-items: center;
+  gap: 4px;
   color: #cbb995;
   font-family: Georgia, "Times New Roman", serif;
-  font-size: 13px;
-  letter-spacing: .08em;
+  font-size: 11px;
+  letter-spacing: .06em;
   text-shadow: 0 1px 2px #000;
 }
 
@@ -278,11 +149,11 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 58px;
-  height: 58px;
+  width: 40px;
+  height: 40px;
   color: var(--ryv-cor);
   font-family: Georgia, "Times New Roman", serif;
-  font-size: 31px;
+  font-size: 22px;
   font-weight: normal;
   line-height: 1;
   border: 1px solid var(--ryv-cor);
@@ -291,18 +162,19 @@
     radial-gradient(circle at 35% 28%, rgba(255, 245, 215, .15), transparent 48%),
     linear-gradient(145deg, #21170f, #382719 70%, #1b130d);
   box-shadow:
-    inset 0 0 0 3px rgba(0, 0, 0, .35),
-    inset 0 0 12px rgba(0, 0, 0, .8),
+    inset 0 0 0 2px rgba(0, 0, 0, .35),
+    inset 0 0 10px rgba(0, 0, 0, .8),
     0 0 0 2px rgba(181, 143, 76, .2),
-    0 0 12px color-mix(in srgb, var(--ryv-cor) 20%, transparent);
+    0 0 10px color-mix(in srgb, var(--ryv-cor) 20%, transparent);
 }
 
-/* Campo numérico para o Mestre */
+/* Campo numérico do Mestre */
 .rufos-ynkera-virtues .ryv-control input {
   order: 3;
-  width: 66px;
-  height: 27px;
-  padding: 2px 5px;
+  flex: 0 0 auto;
+  width: 54px;
+  height: 26px;
+  padding: 2px 4px;
   color: #eadbb9;
   font-family: Georgia, "Times New Roman", serif;
   font-size: 14px;
@@ -320,11 +192,12 @@
               inset 0 2px 5px rgba(0, 0, 0, .7);
 }
 
-/* Rodapé e botão de adicionar */
+/* ---------- Rodapé e botão Adicionar (compactos) ---------- */
+
 .rufos-ynkera-virtues .ryv-footer {
   display: flex;
   justify-content: center;
-  padding: 13px 16px 17px;
+  padding: 7px 16px 9px;
   background: linear-gradient(180deg, #1c1510, #120d09);
   border-top: 1px solid rgba(184, 143, 75, .45);
 }
@@ -332,11 +205,13 @@
 .rufos-ynkera-virtues .ryv-footer button {
   position: relative;
   width: auto;
-  min-width: 175px;
-  padding: 8px 24px;
+  min-width: 150px;
+  height: 28px;
+  line-height: 1;
+  padding: 0 22px;
   color: #ead7ad;
   font-family: Georgia, "Times New Roman", serif;
-  font-size: 13px;
+  font-size: 12px;
   font-weight: bold;
   letter-spacing: .12em;
   text-transform: uppercase;
@@ -361,28 +236,68 @@
   transform: translateY(1px);
 }
 
-@media (max-width: 560px) {
+/* ---------- Telas BAIXAS: compacta ainda mais só a área dos pontos ---------- */
+
+@media (max-height: 820px) {
   .rufos-ynkera-virtues .ryv-controls {
-    gap: 7px;
-    padding: 17px 9px 15px;
+    padding: 8px 12px 6px;
+    gap: 8px;
+  }
+
+  .rufos-ynkera-virtues .ryv-controls::before,
+  .rufos-ynkera-virtues .ryv-controls::after {
+    display: none; /* tira os filetes ornamentais */
   }
 
   .rufos-ynkera-virtues .ryv-control {
-    padding: 13px 5px 10px;
-  }
-
-  .rufos-ynkera-virtues .ryv-control label {
-    font-size: 10px;
-    letter-spacing: .08em;
+    padding: 4px 16px;
   }
 
   .rufos-ynkera-virtues .ryv-value strong {
-    width: 46px;
-    height: 46px;
-    font-size: 25px;
+    width: 32px;
+    height: 32px;
+    font-size: 18px;
   }
 
-  .rufos-ynkera-virtues .ryv-value {
-    font-size: 10px;
+  .rufos-ynkera-virtues .ryv-control input {
+    height: 24px;
   }
+
+  .rufos-ynkera-virtues .ryv-footer {
+    padding: 4px 16px 5px;
+  }
+
+  .rufos-ynkera-virtues .ryv-footer button {
+    height: 24px;
+    font-size: 11px;
+  }
+}
+
+/* ---------- Telas ESTREITAS ---------- */
+
+@media (max-width: 700px) {
+  .rufos-ynkera-virtues .ryv-controls {
+    gap: 6px;
+    padding: 8px 8px 6px;
+  }
+
+  .rufos-ynkera-virtues .ryv-control {
+    flex-direction: column;
+    gap: 3px;
+    padding: 6px 4px;
+  }
+
+  .rufos-ynkera-virtues .ryv-control::before,
+  .rufos-ynkera-virtues .ryv-control::after {
+    display: none;
+  }
+
+  .rufos-ynkera-virtues .ryv-control label {
+    flex: 0 0 auto;
+    font-size: 10px;
+    letter-spacing: .06em;
+    text-align: center;
+  }
+
+  .rufos-ynkera-virtues .ryv-value { font-size: 10px; }
 }
