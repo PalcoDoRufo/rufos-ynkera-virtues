@@ -2,7 +2,7 @@
   "id": "rufos-ynkera-virtues",
   "title": "Rufo's Ynkera Virtues",
   "description": "Um módulo simples para guardar os Pontos de Virtude dos jogadores das Crônicas de Ynkera. Abraço Prolix!",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "socket": true,
   "authors": [
     {
@@ -14,7 +14,7 @@
     "verified": "14"
   },
   "manifest": "https://github.com/PalcoDoRufo/rufos-ynkera-virtues/releases/latest/download/module.json",
-  "download": "https://github.com/PalcoDoRufo/rufos-shopkeeper/releases/download/v1.0.0/rufos-ynkera-virtues.zip",
+  "download": "https://github.com/PalcoDoRufo/rufos-ynkera-virtues/releases/download/v1.0.0/rufos-ynkera-virtues.zip",
   "url": "https://github.com/PalcoDoRufo/rufos-ynkera-virtues",
   "esmodules": [
     "scripts/module.js"

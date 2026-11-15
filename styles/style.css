@@ -19,6 +19,12 @@
   position: relative;
   line-height: 0;
   overflow: hidden;
+  /* Em telas altas: ocupa 100% da largura (igual a antes).
+     Em telas baixas: encolhe para a janela caber na altura da tela.
+     340px = espaço reservado para barra de título, cartões e rodapé;
+     1.5 = proporção 1536/1024 da imagem. */
+  width: min(100%, max(320px, calc((100vh - 340px) * 1.5)));
+  margin: 0 auto;
 }
 
 .rufos-ynkera-virtues .ryv-overlay {
